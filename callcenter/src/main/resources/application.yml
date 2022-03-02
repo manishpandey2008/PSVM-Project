@@ -1,0 +1,14 @@
+eureka:
+  client:
+    register-with-eureka: true
+    registry-fetch-interval-seconds: 30
+    fetchRegistry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+spring:
+  application:
+    name: CALL-CENTER-SERVICE
+
+server:
+  port: 8001
