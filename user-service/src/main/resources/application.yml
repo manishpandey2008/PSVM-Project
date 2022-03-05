@@ -20,7 +20,7 @@ spring:
     host: smtp.gmail.com
     port: 587
     username: mpandeyji2018@gmail.com
-    password: umyavmfnztqgilty
+    password: 
     properties:
       mail:
         smtp:
@@ -30,9 +30,9 @@ spring:
 
 
 twilio:
-  account_sid: AC95cefe7574f079ce93b89410aba63e0a
-  auth_token: 1711332097f9beaf0c0324e6c25d6e7d
-  trail_number: +18593507447
+  account_sid:
+  auth_token: 
+  trail_number: 
 
 
 eureka:
