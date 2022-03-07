@@ -1,11 +1,13 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { HomeComponent } from "./components/home/home.component";
 import { DashboardHomeComponent } from "./dashboard-home/dashboard-home.component";
-import { DaskCompoComponent } from "./dask-compo/dask-compo.component";
 
 const routes: Routes=[
-  {path:"",component:DashboardHomeComponent},
-  {path:"comp",component:DaskCompoComponent}
+  {path:"",component:DashboardHomeComponent,
+  children: [
+    {path:"home",component:HomeComponent},
+  ]}
 ]
 
 @NgModule({
