@@ -13,6 +13,7 @@ import { PriceLimitComponent } from './components/price-limit/price-limit.compon
 import { ProfileComponent } from './components/profile/profile.component';
 import { HistoryComponent } from './components/history/history.component';
 import { FormComponent } from './components/form/form.component';
+import { LocationComponent } from './components/location/location.component';
 
 
 
@@ -30,6 +31,7 @@ import { FormComponent } from './components/form/form.component';
     ProfileComponent,
     HistoryComponent,
     FormComponent,
+    LocationComponent,
   ],
   exports:[
 

@@ -3,48 +3,14 @@
 <div class="flex items-center justify-center absolute z-20 top-20" *ngIf="isShow">
   <div class="w-full max-w-md">
     <div class="bg-white shadow-lg rounded px-10 pt-6 pb-8 mb-2">
-      <div class="text-gray-800 text-2xl flex justify-center border-b-2 py-2 mb-2">
-        Edit Profile
+      <div (click)="isShow=false" class="absolute rotate-45 text-3xl top-0 right-0 w-10 h-10 p-2">
+        <span>+</span>
       </div>
-      <div class="mb-2">
-        <label class="block text-gray-700 text-sm font-normal mb-2" for="username" >
-         Name
-        </label>
-        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          autofocus placeholder="Enter name"
-        />
-      </div>
-      <div class="mb-2">
-        <label class="block text-gray-700 text-sm font-normal mb-2"  for="password" >
-          Email
-        </label>
-        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-           type="text" placeholder="Enter email" />
-      </div>
-      <div class="mb-2">
-        <label class="block text-gray-700 text-sm font-normal mb-2"  for="password" >
-          Village
-        </label>
-        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-           type="text" placeholder="Enter village"   />
-      </div>
-      <div class="mb-2">
-        <label class="block text-gray-700 text-sm font-normal mb-2"  for="password" >
-          Postoffice
-        </label>
-        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-           type="text" placeholder="Enter postoffice"   />
-      </div>
-      <div class="mb-2">
-        <label class="block text-gray-700 text-sm font-normal mb-2"  for="password" >
-          Address
-        </label>
-        <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"  cols="27" rows="5"
-        placeholder="Enter your full address"></textarea>
-      </div>
+      <ng-content></ng-content>
       <div class="flex items-center justify-start">
         <span class="px-4 py-1.5 rounded text-white inline-block shadow-lg bg-blue-500 hover:bg-blue-600 focus:bg-blue-700" type="submit">Update</span>
-        <span (click)="isShow=false" class="px-4 py-1.5 mx-5 rounded text-gray-600 border border-blue-500 inline-block shadow-lg bg-white hover:bg-red-200 focus:bg-red-300" >Close</span>
+        <!-- <span (click)="isShow=false" class="px-4 py-1.5 mx-5 rounded text-gray-600 border border-blue-500 inline-block shadow-lg bg-white hover:bg-blue-300 focus:bg-blue-300" >Close</span> -->
+        <span (click)="isShow=false" class="px-4 py-1.5 mx-5 rounded text-white border border-red-300 inline-block shadow-lg bg-red-300 hover:bg-red-400 focus:bg-red-500" >Delete</span>
       </div>
     </div>
   </div>
