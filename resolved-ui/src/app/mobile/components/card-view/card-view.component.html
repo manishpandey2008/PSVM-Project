@@ -1,0 +1,11 @@
+<div class="w-full">
+  <div class="border-2 border-gray-300 bg-white rounded-md" style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;">
+    <div class="w-full flex justify-between items-center px-3 text-sm"  [class]="data.headerColor">
+      <div class="py-4">{{data.header}}</div>
+      <div class="px-3 py-1 bg-gray-200 rounded-lg" *ngIf="data.chageButtonUrl!='none'">{{data.chageButtonText}}</div>
+    </div>
+    <div class="py-5 overflow-y-auto max-h-60 px-2" [class]="data.textAlingment">
+        <ng-content></ng-content>
+    </div>
+  </div>
+</div>
