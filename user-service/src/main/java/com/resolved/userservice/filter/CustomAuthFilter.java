@@ -3,7 +3,9 @@ package com.resolved.userservice.filter;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.resolved.userservice.service.UserSerciceImp;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -29,8 +31,12 @@ public class CustomAuthFilter extends UsernamePasswordAuthenticationFilter {
 
     private final AuthenticationManager authenticationManager;
 
-    public CustomAuthFilter(AuthenticationManager authenticationManager){
+    @Autowired
+    private UserSerciceImp userSerciceImp;
+
+    public CustomAuthFilter(AuthenticationManager authenticationManager, UserSerciceImp userSerciceImp){
         this.authenticationManager=authenticationManager;
+        this.userSerciceImp = userSerciceImp;
     }
 
     @Override
@@ -52,6 +58,7 @@ public class CustomAuthFilter extends UsernamePasswordAuthenticationFilter {
                 .withExpiresAt(new Date(System.currentTimeMillis()+30*60*1000))
                 .withIssuer(request.getRequestURL().toString())
                 .withClaim("role",user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
+                .withClaim("activation-status", userSerciceImp.getUser(user.getUsername()).isAccountActiveStatus())
                 .sign(algorithm);
 
         String refresh_token= JWT.create()

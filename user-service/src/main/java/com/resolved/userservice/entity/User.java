@@ -46,5 +46,5 @@ public class User {
     private boolean currentActiveStatus;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<Role> roles=new ArrayList<>();
+    private Collection<Role> roles=new ArrayList<>();
 }

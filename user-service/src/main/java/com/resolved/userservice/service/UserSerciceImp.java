@@ -69,7 +69,7 @@ public class UserSerciceImp implements UserService, UserDetailsService {
     @Override
     public User saveUser(User user) {
         try{
-            List<String> roleList=getRolesInForm(user.getRoles());
+            List<String> roleList=getRolesInForm(user.getRoles().stream().toList());
             String password = NanoIdUtils.randomNanoId();
             if(roleList.contains("LOBOUR")){
                 user.setPassword(password);
@@ -78,7 +78,7 @@ public class UserSerciceImp implements UserService, UserDetailsService {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             user.setRoles(null);
             user=userRepo.save(user);
-//            addRoleToUser(user.getUsername(),roleList);
+            addRoleToUser(user.getUsername(),roleList);
             user.setUserPhone("+91"+user.getUserPhone());
             sendRegistrationMessage(user,roleList);
             return user;
@@ -99,7 +99,7 @@ public class UserSerciceImp implements UserService, UserDetailsService {
             MailDto mailDto=new MailDto();
             mailDto.setSendFrom("balmukundpandey20oct1997@gmail.com");
             mailDto.setSendTo(user.getUserEmail());
-            mailDto.setMailSubject("Email verifiction code of PSVM");
+            mailDto.setMailSubject("Email verification code of PSVM");
             mailDto.setMailBody(message);
             mailService.sendMailToUser(mailDto);
         }
@@ -120,11 +120,14 @@ public class UserSerciceImp implements UserService, UserDetailsService {
     @Override
     public void addRoleToUser(String username, List<String> roleName) {
         log.info("Add {} role to {} user successfully",roleName,username);
-        for (String s : roleName) {
+        for (String r:roleName) {
             User user=userRepo.findByUsername(username);
-            Role role=roleRepo.findByName(s);
-
-//            user.getRoles().add(role);
+            Role role=roleRepo.findByName(r);
+            var check=user.getRoles();
+            if(check==null){
+                user.setRoles(new ArrayList<>());
+            }
+            user.getRoles().add(role);
         }
     }
 

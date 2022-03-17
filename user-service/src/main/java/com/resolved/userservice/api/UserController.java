@@ -41,7 +41,7 @@ public class UserController {
         return ResponseEntity.created(uri).body(userService.saveUser(user));
     }
 
-    @GetMapping("{username}")
+    @GetMapping("/username/{username}")
     public ResponseEntity<User> getlUser(@PathVariable String username){
         return ResponseEntity.ok().body(userService.getUser(username));
     }
@@ -66,6 +66,12 @@ public class UserController {
 
     @GetMapping("/email/{email}")
     public ResponseEntity<User> getUserByEmail(String email){
+        URI uri=URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/email/"+email).toUriString());
+        return ResponseEntity.created(uri).body(userService.getUserByEmail(email));
+    }
+
+    @GetMapping("/verification-for-account-activation/{verificationcode}")
+    public ResponseEntity<User> verifyActivationCode(String email){
         URI uri=URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/email/"+email).toUriString());
         return ResponseEntity.created(uri).body(userService.getUserByEmail(email));
     }
