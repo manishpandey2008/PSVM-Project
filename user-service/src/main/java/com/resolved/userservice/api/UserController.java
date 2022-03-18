@@ -83,7 +83,6 @@ public class UserController {
     @PostMapping("/authentication")
     public ResponseEntity<TokenResponce> authentication(@RequestBody LoginDto loginDto){
         URI uri=URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/authentication").toUriString());
-        log.info("manish pandey");
         return userService.authentication(loginDto);
     }
 

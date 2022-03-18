@@ -183,8 +183,6 @@ public class UserSerciceImp implements UserService, UserDetailsService {
 
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
 
-        log.info("================================testting authentication======");
-
         return restTemplate.postForEntity( "http://localhost:"+PORT+"/api/login", request , TokenResponce.class );
     }
 
