@@ -1,6 +1,7 @@
 package com.resolved.userservice.service;
 
 import com.resolved.userservice.dto.ActivationCode;
+import com.resolved.userservice.dto.LoginDto;
 import com.resolved.userservice.dto.TokenResponce;
 import com.resolved.userservice.entity.Role;
 import com.resolved.userservice.entity.User;
@@ -27,6 +28,8 @@ public interface UserService {
     User getUserByPhoneNumber(String phoneNumber);
 
     User getUserByEmail(String email);
+
+    ResponseEntity<TokenResponce> authentication(LoginDto loginDto);
 
     ResponseEntity<TokenResponce> loginByCode(ActivationCode userActivationCode);
 

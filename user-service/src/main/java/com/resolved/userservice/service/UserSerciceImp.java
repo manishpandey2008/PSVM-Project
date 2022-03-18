@@ -6,6 +6,7 @@ import com.resolved.userservice.communication.mail.MailService;
 import com.resolved.userservice.communication.sms.SmsDto;
 import com.resolved.userservice.communication.sms.SmsService;
 import com.resolved.userservice.dto.ActivationCode;
+import com.resolved.userservice.dto.LoginDto;
 import com.resolved.userservice.dto.TokenResponce;
 import com.resolved.userservice.entity.Role;
 import com.resolved.userservice.entity.User;
@@ -167,6 +168,24 @@ public class UserSerciceImp implements UserService, UserDetailsService {
             log.info(e.getMessage());
             return null;
         }
+    }
+
+    @Override
+    public ResponseEntity<TokenResponce> authentication(LoginDto loginDto) {
+        RestTemplate restTemplate=new RestTemplate();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+
+        MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();
+        map.add("username",loginDto.getUsername());
+        map.add("password",loginDto.getPassword());
+
+        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
+
+        log.info("================================testting authentication======");
+
+        return restTemplate.postForEntity( "http://localhost:"+PORT+"/api/login", request , TokenResponce.class );
     }
 
     @Override

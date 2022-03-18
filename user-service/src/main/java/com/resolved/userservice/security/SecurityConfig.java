@@ -40,10 +40,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         CustomAuthFilter customAuthFilter=new CustomAuthFilter(authenticationManagerBean(),userSerciceImp);
         customAuthFilter.setFilterProcessesUrl("/api/login");
-
             http.csrf().disable();
             http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-            http.authorizeRequests().antMatchers("/api/login","/api/user/new","/api/user/info","/api/user/activation-code/login").permitAll();
+            http.authorizeRequests().antMatchers("/api/login","/api/user/new","/api/user/info","/api/user/activation-code/login","/api/user/authentication").permitAll();
             http.authorizeRequests().antMatchers(GET,"/api/user/**").hasAnyAuthority("MANAGER");
             http.authorizeRequests().antMatchers(POST,"/api/user/**").hasAnyAuthority("MANAGER");
             http.authorizeRequests().anyRequest().authenticated();

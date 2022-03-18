@@ -1,12 +1,14 @@
 package com.resolved.userservice.api;
 
 import com.resolved.userservice.dto.ActivationCode;
+import com.resolved.userservice.dto.LoginDto;
 import com.resolved.userservice.dto.RollToUser;
 import com.resolved.userservice.dto.TokenResponce;
 import com.resolved.userservice.entity.Role;
 import com.resolved.userservice.entity.User;
 import com.resolved.userservice.service.UserService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -17,6 +19,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/user")
 @RequiredArgsConstructor
+@Slf4j
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class UserController {
     private final UserService userService;
 
@@ -74,6 +78,13 @@ public class UserController {
     public ResponseEntity<User> verifyActivationCode(String email){
         URI uri=URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/email/"+email).toUriString());
         return ResponseEntity.created(uri).body(userService.getUserByEmail(email));
+    }
+
+    @PostMapping("/authentication")
+    public ResponseEntity<TokenResponce> authentication(@RequestBody LoginDto loginDto){
+        URI uri=URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/authentication").toUriString());
+        log.info("manish pandey");
+        return userService.authentication(loginDto);
     }
 
 
