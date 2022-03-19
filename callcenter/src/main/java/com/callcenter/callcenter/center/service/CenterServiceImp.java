@@ -78,4 +78,13 @@ public record CenterServiceImp(CenterRepo centerRepo, ModelMapper modelMapper) i
         }
         return result;
     }
+
+
+//    public boolean authentication(List<CenterEntity> list ){
+//        List<CenterDto> result=new LinkedList<>();
+//        for(CenterEntity centerEntity:list){
+//            result.add( modelMapper.map(centerEntity,CenterDto.class));
+//        }
+//        return result;
+//    }
 }

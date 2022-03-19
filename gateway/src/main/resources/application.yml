@@ -21,6 +21,10 @@ spring:
           uri: lb://USER-SERVICE
           predicates:
             - Path=/api/user/**
+        - id: CALL-CENTER-SERVICE
+          uri: lb://CALL-CENTER-SERVICE
+          predicates:
+            - Path=/api/center/**
 
 #hystrix:
 #  command:

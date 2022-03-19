@@ -25,7 +25,7 @@ public class CenterEntity extends CommonEntity {
     private String centerFullAddress;
 
     @Column(nullable = false)
-    private String[] centerHelplineNumber;
+    private String centerHelplineNumber;
 
     @Column(length = 50)
     private String centerEmail;
@@ -36,5 +36,5 @@ public class CenterEntity extends CommonEntity {
     @Column(nullable = false,length = 10)
     private String centerCloseTime;
 
-    private Long centerManagerId;
+    private String managerUsername;
 }
