@@ -6,25 +6,21 @@ spring:
     name: api-gateway
   cloud:
     gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedHeaders:
+              - content-type
+              - Authorization
+            allowedMethods:
+              - GET
+              - POST
       routes:
-        - id: department
-          uri: lb://department
+        - id: USER-SERVICE
+          uri: lb://USER-SERVICE
           predicates:
-            - Path=/department/**
-          filters:
-            - name: CircuitBreaker
-              args:
-                name: department
-                fallbackuri: forward:/departmentFallBack
-        - id: user
-          uri: lb://user
-          predicates:
-            - Path=/user/**
-          filters:
-            - name: CircuitBreaker
-              args:
-                name: user
-                fallbackuri: forward:/userFallBack
+            - Path=/api/user/**
 
 #hystrix:
 #  command:

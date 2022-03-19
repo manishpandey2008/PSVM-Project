@@ -36,6 +36,22 @@ public class User {
     @Column(nullable = false,length = 15,unique = true)
     private String userPhone;
 
+    @Column(nullable = false,length = 6)
+    private String pinCode;
+
+    @Column(nullable = false,length = 50)
+    private String state;
+
+    @Column(nullable = false,length = 50)
+    private String district;
+
+    @Column(nullable = false,length = 200)
+    private String fullAddress;
+
+    private Long centerId;
+
+    private String managerUsername;
+
     @Column(nullable = false,length = 50)
     private String activateCode;
 

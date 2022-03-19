@@ -1,9 +1,6 @@
 package com.resolved.userservice.api;
 
-import com.resolved.userservice.dto.ActivationCode;
-import com.resolved.userservice.dto.LoginDto;
-import com.resolved.userservice.dto.RollToUser;
-import com.resolved.userservice.dto.TokenResponce;
+import com.resolved.userservice.dto.*;
 import com.resolved.userservice.entity.Role;
 import com.resolved.userservice.entity.User;
 import com.resolved.userservice.service.UserService;
@@ -25,8 +22,8 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/info")
-    public ResponseEntity<String> getUserServiceInfo(){
-        return ResponseEntity.ok().body("User service working fine");
+    public ResponseEntity<MessageResp> getUserServiceInfo(){
+        return ResponseEntity.ok().body(new MessageResp("User service working fine"));
     }
 
     @GetMapping("/")
