@@ -17,6 +17,9 @@ public class Chart extends CommonEntity {
     @Column(nullable = false)
     private Date chartStartDate;
 
+    @Column(length = 255)
+    private String chartDescription;
+
     private boolean chartListStatus=false;
 
     @Column(nullable = false)

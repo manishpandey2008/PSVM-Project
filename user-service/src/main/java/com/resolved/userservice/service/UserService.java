@@ -20,6 +20,8 @@ public interface UserService {
 
     User getUser(String username);
 
+    User getUserById(Long id);
+
     List<User> getUsers();
 
     List<Role> getRoles();

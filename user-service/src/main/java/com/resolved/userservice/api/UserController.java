@@ -59,6 +59,13 @@ public class UserController {
 //        return null;
 //    }
 
+
+    @GetMapping("/id/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable Long id){
+        URI uri=URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/id/"+id).toUriString());
+        return ResponseEntity.created(uri).body(userService.getUserById(id));
+    }
+
     @GetMapping("/phoneNumber/{phoneNumber}")
     public ResponseEntity<User> getUserByPhoneNumber(String phoneNumber){
         URI uri=URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/phoneNumber/"+phoneNumber).toUriString());

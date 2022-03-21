@@ -13,6 +13,7 @@ import java.util.Date;
 public class ChartDto extends CommonDto {
     private String chartName;
     private Date chartStartDate;
+    private String chartDescription;
     private boolean chartListStatus;
     private Long centerId;
 }

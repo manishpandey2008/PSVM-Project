@@ -139,6 +139,11 @@ public class UserSerciceImp implements UserService, UserDetailsService {
     }
 
     @Override
+    public User getUserById(Long id) {
+        return userRepo.findById(id).orElse(null);
+    }
+
+    @Override
     public List<User> getUsers() {
         log.info("Get All users");
         return userRepo.findAll();

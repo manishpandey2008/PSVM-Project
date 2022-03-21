@@ -13,4 +13,5 @@ public interface CenterRepo extends JpaRepository<CenterEntity,Long> {
     List<CenterEntity> findAllByCenterState(String centerStateName);
 
     List<CenterEntity> findAllByCenterDistrict(String centerDistrictName);
+
 }

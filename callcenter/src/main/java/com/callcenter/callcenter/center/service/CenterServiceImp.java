@@ -61,6 +61,17 @@ public record CenterServiceImp(CenterRepo centerRepo, ModelMapper modelMapper) i
         }
     }
 
+//    @Override
+//    public CenterDto getByUsername(String username) {
+//        try{
+//            CenterEntity center=modelMapper.map(centerDto, CenterEntity.class);
+//            return this.conversion(centerRepo.findAllByCenterState(stateName));
+//        }catch(Exception ex){
+//            log.info("Error at get all state in district {}", stateName);
+//            return null;
+//        }
+//    }
+
     @Override
     public List<CenterDto> getAllCenterByDistrict(String districtName) {
         try{

@@ -16,6 +16,7 @@ spring:
             allowedMethods:
               - GET
               - POST
+              - DELETE
       routes:
         - id: USER-SERVICE
           uri: lb://USER-SERVICE
@@ -24,7 +25,7 @@ spring:
         - id: CALL-CENTER-SERVICE
           uri: lb://CALL-CENTER-SERVICE
           predicates:
-            - Path=/api/center/**
+            - Path=/api/center/**,/api/chart/**
 
 #hystrix:
 #  command:

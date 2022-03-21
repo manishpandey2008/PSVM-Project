@@ -13,5 +13,6 @@ public interface CenterService {
     List<CenterDto>  getAllCenter();
     ResponceDto deleteCenter(Long id);
     List<CenterDto> getAllCenterByState(String stateName);
+//    CenterDto getByUsername(String username);
     List<CenterDto> getAllCenterByDistrict(String districtName);
 }
