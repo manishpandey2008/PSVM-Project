@@ -19,7 +19,10 @@ public class TaskEntity extends CommonEntity {
     @Column(nullable = false,length = 10)
     private String taskMinPrice;
 
-    private boolean taskStatus;
+    @Column(length = 255)
+    private String taskDescription;
+
+    private boolean taskStatus=true;
 
     @Column(nullable = false)
     private Long chartId;

@@ -14,6 +14,7 @@ public class TaskDto extends CommonDto {
     private String taskName;
     private String taskSubName;
     private String taskMinPrice;
+    private String taskDescription;
     private boolean taskStatus;
     private Long chartId;
 }

@@ -25,7 +25,7 @@ spring:
         - id: CALL-CENTER-SERVICE
           uri: lb://CALL-CENTER-SERVICE
           predicates:
-            - Path=/api/center/**,/api/chart/**
+            - Path=/api/center/**,/api/chart/**,/api/task/**,/api/yojana/**
 
 #hystrix:
 #  command:
