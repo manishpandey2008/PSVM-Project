@@ -20,7 +20,7 @@ public class Chart extends CommonEntity {
     @Column(length = 255)
     private String chartDescription;
 
-    private boolean chartListStatus=false;
+    private boolean chartListStatus=true;
 
     @Column(nullable = false)
     private Long centerId;

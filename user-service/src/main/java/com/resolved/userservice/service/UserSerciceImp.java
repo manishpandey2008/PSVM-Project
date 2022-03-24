@@ -53,7 +53,7 @@ public class UserSerciceImp implements UserService, UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user=userRepo.findByUsername(username);
+        User user=userRepo.findByUsername(username).orElse(null);
         if(user==null){
             log.error("Uase {} not found in database",username);
             throw new UsernameNotFoundException("Uase not found in database");
@@ -122,7 +122,7 @@ public class UserSerciceImp implements UserService, UserDetailsService {
     public void addRoleToUser(String username, List<String> roleName) {
         log.info("Add {} role to {} user successfully",roleName,username);
         for (String r:roleName) {
-            User user=userRepo.findByUsername(username);
+            User user=userRepo.findByUsername(username).orElse(null);
             Role role=roleRepo.findByName(r);
             var check=user.getRoles();
             if(check==null){
@@ -135,7 +135,7 @@ public class UserSerciceImp implements UserService, UserDetailsService {
     @Override
     public User getUser(String username) {
         log.info("Get user {} by username",username);
-        return userRepo.findByUsername(username);
+        return userRepo.findByUsername(username).orElse(null);
     }
 
     @Override
