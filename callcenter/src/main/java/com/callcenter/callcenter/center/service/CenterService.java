@@ -2,6 +2,7 @@ package com.callcenter.callcenter.center.service;
 
 import com.callcenter.callcenter.center.dto.CenterDto;
 import com.callcenter.callcenter.center.entity.CenterEntity;
+import com.callcenter.callcenter.common.dto.DashboardDto;
 import com.callcenter.callcenter.common.dto.ResponceDto;
 import org.springframework.stereotype.Service;
 
@@ -15,4 +16,5 @@ public interface CenterService {
     List<CenterDto> getAllCenterByState(String stateName);
 //    List<CenterDto> getByUsername(String username);
     List<CenterDto> getAllCenterByDistrict(String districtName);
+    DashboardDto dashboard();
 }

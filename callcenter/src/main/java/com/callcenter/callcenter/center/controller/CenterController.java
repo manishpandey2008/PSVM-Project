@@ -1,12 +1,21 @@
 package com.callcenter.callcenter.center.controller;
 
 import com.callcenter.callcenter.center.dto.CenterDto;
+import com.callcenter.callcenter.center.dto.UserDto;
 import com.callcenter.callcenter.center.service.CenterService;
+import com.callcenter.callcenter.common.dto.DashboardDto;
 import com.callcenter.callcenter.common.dto.ResponceDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -16,6 +25,9 @@ import java.util.List;
 @RequestMapping("/api/center")
 public class CenterController {
     private final CenterService centerService;
+
+    @Value("${server.userService.port}")
+    private String PORT;
 
     @PostMapping("/")
     public ResponseEntity<CenterDto> addCenter(@RequestBody CenterDto centerDto) {
@@ -51,5 +63,18 @@ public class CenterController {
     public ResponseEntity<List<CenterDto>> getAllCenterByDistrict(@PathVariable  String districtName) {
         log.info("Get all center which districtName name is {}",districtName);
         return ResponseEntity.ok().body(centerService.getAllCenterByDistrict(districtName));
+    }
+
+
+    @GetMapping("/dashboard")
+    public DashboardDto dashboard() {
+        RestTemplate restTemplate=new RestTemplate();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+
+        UserDto[] list= restTemplate.getForObject( "http://localhost:"+PORT+"/api/user/" , UserDto[].class);
+
+        return centerService.dashboard();
     }
 }

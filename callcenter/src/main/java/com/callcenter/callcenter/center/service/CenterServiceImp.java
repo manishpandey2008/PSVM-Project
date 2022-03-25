@@ -3,6 +3,7 @@ package com.callcenter.callcenter.center.service;
 import com.callcenter.callcenter.center.dto.CenterDto;
 import com.callcenter.callcenter.center.entity.CenterEntity;
 import com.callcenter.callcenter.center.repo.CenterRepo;
+import com.callcenter.callcenter.common.dto.DashboardDto;
 import com.callcenter.callcenter.common.dto.ResponceDto;
 import com.callcenter.callcenter.common.service.ModelMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -80,6 +81,11 @@ public record CenterServiceImp(CenterRepo centerRepo, ModelMapper modelMapper) i
             log.info("Error at get all center in district {}", districtName);
             return null;
         }
+    }
+
+    @Override
+    public DashboardDto dashboard() {
+        return null;
     }
 
     public List<CenterDto> conversion(List<CenterEntity> list ){
