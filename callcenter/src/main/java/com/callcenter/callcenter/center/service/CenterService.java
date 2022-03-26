@@ -16,5 +16,4 @@ public interface CenterService {
     List<CenterDto> getAllCenterByState(String stateName);
 //    List<CenterDto> getByUsername(String username);
     List<CenterDto> getAllCenterByDistrict(String districtName);
-    DashboardDto dashboard();
 }

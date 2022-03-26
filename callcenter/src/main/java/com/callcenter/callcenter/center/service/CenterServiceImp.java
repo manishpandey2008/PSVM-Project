@@ -83,10 +83,6 @@ public record CenterServiceImp(CenterRepo centerRepo, ModelMapper modelMapper) i
         }
     }
 
-    @Override
-    public DashboardDto dashboard() {
-        return null;
-    }
 
     public List<CenterDto> conversion(List<CenterEntity> list ){
         List<CenterDto> result=new LinkedList<>();

@@ -8,12 +8,9 @@ import com.callcenter.callcenter.common.dto.ResponceDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -65,16 +62,4 @@ public class CenterController {
         return ResponseEntity.ok().body(centerService.getAllCenterByDistrict(districtName));
     }
 
-
-    @GetMapping("/dashboard")
-    public DashboardDto dashboard() {
-        RestTemplate restTemplate=new RestTemplate();
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-
-        UserDto[] list= restTemplate.getForObject( "http://localhost:"+PORT+"/api/user/" , UserDto[].class);
-
-        return centerService.dashboard();
-    }
 }
