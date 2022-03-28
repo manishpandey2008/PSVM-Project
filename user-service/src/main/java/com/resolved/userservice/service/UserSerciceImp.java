@@ -213,4 +213,8 @@ public class UserSerciceImp implements UserService, UserDetailsService {
         return restTemplate.postForEntity( "http://localhost:"+PORT+"/api/login", request , TokenResponce.class );
     }
 
+    private void addPincode(User user) {
+        
+    }
+
 }

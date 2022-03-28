@@ -17,6 +17,7 @@ spring:
               - GET
               - POST
               - DELETE
+              - PUT
       routes:
         - id: USER-SERVICE
           uri: lb://USER-SERVICE
@@ -25,7 +26,7 @@ spring:
         - id: CALL-CENTER-SERVICE
           uri: lb://CALL-CENTER-SERVICE
           predicates:
-            - Path=/api/center/**,/api/chart/**,/api/task/**,/api/yojana/**
+            - Path=/api/center/**,/api/chart/**,/api/task/**,/api/yojana/**,/center,/api/pincode/**
 
 #hystrix:
 #  command:

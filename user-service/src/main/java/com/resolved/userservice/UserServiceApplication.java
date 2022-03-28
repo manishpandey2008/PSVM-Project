@@ -56,6 +56,8 @@ public class UserServiceApplication {
 				user.setPinCode("878767");
 				user.setState("Rajasthan");
 				user.setDistrict("Kota");
+				user.setVillage("ShreenathPuram");
+				user.setPost("ShreenathPuram");
 				user.setFullAddress("Shreenathpuram kota Rajasthan");
 				user.setActivateCode("admincode");
 				user.setAccountActiveStatus(true);

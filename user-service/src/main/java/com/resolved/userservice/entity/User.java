@@ -45,6 +45,13 @@ public class User {
     @Column(nullable = false,length = 50)
     private String district;
 
+    @Column(nullable = false,length = 100)
+    private String village;
+
+    @Column(nullable = false,length = 100)
+    private String post;
+
+
     @Column(nullable = false,length = 200)
     private String fullAddress;
 

@@ -3,6 +3,7 @@ package com.resolved.userservice.api;
 import com.resolved.userservice.dto.*;
 import com.resolved.userservice.entity.Role;
 import com.resolved.userservice.entity.User;
+import com.resolved.userservice.repo.UserRepo;
 import com.resolved.userservice.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +21,7 @@ import java.util.List;
 @CrossOrigin(origins = "*", maxAge = 3600)
 public class UserController {
     private final UserService userService;
+    private final UserRepo userRepo;
 
     @GetMapping("/info")
     public ResponseEntity<MessageResp> getUserServiceInfo(){
@@ -42,6 +44,19 @@ public class UserController {
         return ResponseEntity.created(uri).body(userService.saveUser(user));
     }
 
+    @PostMapping("/")
+    public ResponseEntity<User> addUserByForm(@RequestBody User user){
+        URI uri=URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/").toUriString());
+        return ResponseEntity.created(uri).body(userService.saveUser(user));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<MessageResp> deleteUser(@PathVariable Long id){
+        URI uri=URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/").toUriString());
+        this.userRepo.deleteById(id);
+        return ResponseEntity.created(uri).body(new MessageResp(("User Deleted From Database ")));
+    }
+
     @GetMapping("/username/{username}")
     public ResponseEntity<User> getlUser(@PathVariable String username){
         return ResponseEntity.ok().body(userService.getUser(username));
@@ -60,7 +75,7 @@ public class UserController {
 //    }
 
 
-    @GetMapping("/id/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id){
         URI uri=URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/id/"+id).toUriString());
         return ResponseEntity.created(uri).body(userService.getUserById(id));
@@ -96,7 +111,4 @@ public class UserController {
         URI uri=URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/activation-code/login").toUriString());
         return userService.loginByCode(activationCode);
     }
-
-
-
 }

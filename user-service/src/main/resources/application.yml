@@ -43,4 +43,12 @@ eureka:
       defaultZone: http://localhost:8761/eureka
 
 
+port:
+  gateway: 8978
+
+center:
+  port: 8001
+
+
+
 
