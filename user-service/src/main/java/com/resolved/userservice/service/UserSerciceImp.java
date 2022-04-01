@@ -1,12 +1,15 @@
 package com.resolved.userservice.service;
 
 import com.aventrix.jnanoid.jnanoid.NanoIdUtils;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.resolved.userservice.communication.mail.MailDto;
 import com.resolved.userservice.communication.mail.MailService;
 import com.resolved.userservice.communication.sms.SmsDto;
 import com.resolved.userservice.communication.sms.SmsService;
 import com.resolved.userservice.dto.ActivationCode;
 import com.resolved.userservice.dto.LoginDto;
+import com.resolved.userservice.dto.PincodeDto;
 import com.resolved.userservice.dto.TokenResponce;
 import com.resolved.userservice.entity.Role;
 import com.resolved.userservice.entity.User;
@@ -30,10 +33,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 @Service
 @Transactional
@@ -49,6 +49,9 @@ public class UserSerciceImp implements UserService, UserDetailsService {
 
     @Value("${server.port}")
     private String PORT;
+
+    @Value("${port.center}")
+    private String GATEWAY;
 
 
     @Override
@@ -74,6 +77,7 @@ public class UserSerciceImp implements UserService, UserDetailsService {
             String password = NanoIdUtils.randomNanoId();
             if(roleList.contains("LOBOUR")){
                 user.setPassword(password);
+                addPincode(user);
             }
             user.setActivateCode(password);
             user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -81,7 +85,7 @@ public class UserSerciceImp implements UserService, UserDetailsService {
             user=userRepo.save(user);
             addRoleToUser(user.getUsername(),roleList);
             user.setUserPhone("+91"+user.getUserPhone());
-            sendRegistrationMessage(user,roleList);
+//            sendRegistrationMessage(user,roleList);
             return user;
         }catch (RuntimeException e){
             log.info((e.getMessage()));
@@ -214,7 +218,21 @@ public class UserSerciceImp implements UserService, UserDetailsService {
     }
 
     private void addPincode(User user) {
-        
+        RestTemplate restTemplate=new RestTemplate();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        PincodeDto pincodeDto=new PincodeDto();
+        pincodeDto.setPinCode(user.getPinCode());
+        pincodeDto.setUsername(user.getUsername());
+        pincodeDto.setVillage(user.getVillage());
+        pincodeDto.setActiveStatus("Active");
+        pincodeDto.setPostOffice(user.getPost());
+
+        HttpEntity<PincodeDto> request = new HttpEntity<PincodeDto>(pincodeDto, headers);
+
+        restTemplate.postForObject("http://localhost:"+GATEWAY+"/api/pincode/",request, PincodeDto.class);
     }
 
 }

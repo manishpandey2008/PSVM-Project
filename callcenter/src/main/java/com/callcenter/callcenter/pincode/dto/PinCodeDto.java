@@ -11,4 +11,5 @@ public class PinCodeDto extends CommonDto {
     private String activeStatus;
     private String village;
     private String postOffice;
+    private String address;
 }

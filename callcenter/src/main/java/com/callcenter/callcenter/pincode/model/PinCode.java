@@ -24,4 +24,7 @@ public class PinCode extends CommonEntity {
 
     @Column(length = 50)
     private String postOffice;
+
+    @Column(length = 150)
+    private String address;
 }

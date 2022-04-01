@@ -9,4 +9,5 @@ public class PincodeDto {
     private String activeStatus;
     private String village;
     private String postOffice;
+    private String address;
 }

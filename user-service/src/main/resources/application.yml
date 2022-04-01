@@ -45,9 +45,9 @@ eureka:
 
 port:
   gateway: 8978
-
-center:
-  port: 8001
+  center: 8001
+#center:
+#  port: 8001
 
 
 
