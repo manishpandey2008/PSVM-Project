@@ -1,18 +1,13 @@
 package com.callcenter.callcenter.center.controller;
 
 import com.callcenter.callcenter.center.dto.CenterDto;
-import com.callcenter.callcenter.center.dto.UserDto;
 import com.callcenter.callcenter.center.service.CenterService;
-import com.callcenter.callcenter.common.dto.DashboardDto;
 import com.callcenter.callcenter.common.dto.ResponceDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 

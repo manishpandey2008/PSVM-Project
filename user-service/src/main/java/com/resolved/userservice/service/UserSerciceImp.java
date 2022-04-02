@@ -72,6 +72,7 @@ public class UserSerciceImp implements UserService, UserDetailsService {
 
     @Override
     public User saveUser(User user) {
+
         try{
             List<String> roleList=getRolesInForm(user.getRoles().stream().toList());
             String password = NanoIdUtils.randomNanoId();
